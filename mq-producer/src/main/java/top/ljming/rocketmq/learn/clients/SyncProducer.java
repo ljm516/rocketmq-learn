@@ -1,4 +1,4 @@
-package top.ljming.rocketmq.learn.simpleExample;
+package top.ljming.rocketmq.learn.clients;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;

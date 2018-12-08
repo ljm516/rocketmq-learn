@@ -1,4 +1,4 @@
-package top.ljming.rocketmq.learn.scheduledExample;
+package top.ljming.mqconsumer.clients;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;

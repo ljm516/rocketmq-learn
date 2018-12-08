@@ -1,11 +1,12 @@
-package top.ljming.rocketmq.learn.simpleExample;
+package top.ljming.mqconsumer.clients;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
-import org.apache.rocketmq.client.consumer.listener.*;
+import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
+import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
-import top.ljming.rocketmq.learn.ConsumerFactory;
+import top.ljming.mqconsumer.factory.ConsumerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;

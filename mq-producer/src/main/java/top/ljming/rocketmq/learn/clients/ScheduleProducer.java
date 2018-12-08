@@ -1,4 +1,4 @@
-package top.ljming.rocketmq.learn.scheduledExample;
+package top.ljming.rocketmq.learn.clients;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;

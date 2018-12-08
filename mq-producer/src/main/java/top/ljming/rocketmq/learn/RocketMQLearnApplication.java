@@ -2,6 +2,7 @@ package top.ljming.rocketmq.learn;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
+import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 import java.io.UnsupportedEncodingException;
 
@@ -26,7 +27,7 @@ public class RocketMQLearnApplication {
         jsonObject.put("message", "参数错误:uid的值不是合法的String[nonce:1375929935][0010-0000-0021]");
         jsonObject.put("userId", 1144992);
 
-        System.out.println(jsonObject.getString("openId").getBytes("utf-8").length);
+        System.out.println(jsonObject.getString("openId").getBytes(RemotingHelper.DEFAULT_CHARSET).length);
 
 //        check(jsonObject);
     }

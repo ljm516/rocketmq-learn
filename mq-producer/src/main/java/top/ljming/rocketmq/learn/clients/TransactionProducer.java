@@ -1,4 +1,4 @@
-package top.ljming.rocketmq.learn.TransactionExample;
+package top.ljming.rocketmq.learn.clients;
 
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -6,6 +6,7 @@ import org.apache.rocketmq.client.producer.TransactionListener;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
+import top.ljming.rocketmq.learn.listener.TransactionListenerImpl;
 
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -60,7 +61,7 @@ public class TransactionProducer {
         ExecutorService executorService = new ThreadPoolExecutor(2, 5, 100,
                 TimeUnit.SECONDS, new ArrayBlockingQueue<>(2000), r -> {
                     Thread thread = new Thread(r);
-                    thread.setName("client-transaction-msg-check-thread");
+                    thread.setName("clients-transaction-msg-check-thread");
                     return thread;
                 });
         transactionProducer.setExecutorService(executorService);

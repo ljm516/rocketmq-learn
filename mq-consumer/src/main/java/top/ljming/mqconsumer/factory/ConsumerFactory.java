@@ -1,4 +1,4 @@
-package top.ljming.rocketmq.learn;
+package top.ljming.mqconsumer.factory;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPullConsumer;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
