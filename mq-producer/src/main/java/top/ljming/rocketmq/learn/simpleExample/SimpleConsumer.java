@@ -4,8 +4,10 @@ import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.*;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.apache.rocketmq.remoting.common.RemotingHelper;
 import top.ljming.rocketmq.learn.ConsumerFactory;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -26,12 +28,22 @@ public class SimpleConsumer {
 
         // 注册回调，在从消息服务器获取到消息到达后执行
         consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
-            System.out.printf("%s Receive New message: %s %n", Thread.currentThread().getName(), msgs);
+            try {
+                processMsg(msgs);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         });
 
         // 启动消费者实例
         consumer.start();
         System.out.printf("Consumer started.%n");
+    }
+
+    private static void processMsg(List<MessageExt> msgs) throws UnsupportedEncodingException {
+        MessageExt messageExt = msgs.get(0);
+        String msgBody = new String(messageExt.getBody(), RemotingHelper.DEFAULT_CHARSET);
+        System.out.printf("msgBody: %s", msgBody);
     }
 }

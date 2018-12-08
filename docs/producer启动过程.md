@@ -1,6 +1,6 @@
 # rocketmq producer启动过程
 
-![producer 启动时序图](../../../images/Producer%20启动过程.jpg)
+![producer 启动时序图](../images/Producer%20启动过程.jpg)
 
 ## producer.start()
 
