@@ -34,7 +34,7 @@ public class SyncProducer {
         msgBody.put("name", "ljming");
         msgBody.put("learning", "rocketmq");
 
-        Message message = new Message("TestTopic", "*",
+        Message message = new Message("simple_topic", "*",
                 msgBody.toJSONString().getBytes(RemotingHelper.DEFAULT_CHARSET));
 
         // 调用send方法，将消息传送到一个消息服务器（broker）

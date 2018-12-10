@@ -108,7 +108,7 @@ consumer.setConsumerThreadMax(20);
 
 ## Architecture
 
-![架构](mq-producer/images/architecture.jpg)
+![架构](images/architecture.jpg)
 
 Apache RocketMQ是一种低延迟、高可用、兆级别能力、灵活可扩展性的分布式消息传递和流媒体平台。
 它包含四个组件：name server，brokers，producers，consumers。它们中的每一个都可以水平扩展而没有单一的故障点。
@@ -229,7 +229,7 @@ flushDiskType | ASYNC_FLUSH | {SYNC_FLUSH/ASYNC_FLUSH}.在确认生产者之前�
 
 ### 核心概念
 
-![核心概念](mq-producer/images/core_concept.jpg)
+![核心概念](images/core_concept.jpg)
 
 根据上面的模型，可以深入研究有关消息传递系统设计的一些主题：
 

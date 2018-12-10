@@ -6,7 +6,7 @@ import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 /**
  * 消费者的基类.
  *
- * @author lijm
+ * @author ljming
  */
 public class ConsumerFactory {
 
