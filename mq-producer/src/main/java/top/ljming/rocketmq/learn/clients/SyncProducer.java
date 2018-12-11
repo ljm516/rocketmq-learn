@@ -30,7 +30,7 @@ public class SyncProducer {
         producer.start();
 
         JSONObject msgBody = new JSONObject();
-        msgBody.put("id", 6);
+        msgBody.put("id", 7);
         msgBody.put("name", "ljming");
         msgBody.put("learning", "rocketmq");
 
