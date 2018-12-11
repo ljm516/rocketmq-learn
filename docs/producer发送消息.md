@@ -359,8 +359,10 @@ TopicPublicInfo
 ```
 
 这里会涉及到两个selectOneMessageQueue方法实现，具体实现在TopicPublishInfo类
+
 - selectOneMessageQueue() //无参的实现
 - selectOneMessageQueue(String lastBrokerName) // 接收brokerName的实现
+
 ```
 public MessageQueue selectOneMessageQueue(final TopicPublishInfo tpInfo, final String lastBrokerName) {
     if (this.sendLatencyFaultEnable) { // 是否开启容错机制，默认关闭
@@ -612,6 +614,7 @@ private SendResult sendKernelImpl(final Message msg,
 ```
 
 1. 根据brokerName获取broker地址, 默认获取master // 消息的发送不可能往salve上发
+
     ```
 public String findBrokerAddressInPublish(final String brokerName) {
     HashMap<Long/* brokerId */, String/* address */> map = this.brokerAddrTable.get(brokerName);
@@ -622,9 +625,16 @@ public String findBrokerAddressInPublish(final String brokerName) {
     return null;
 }
     ```
-2. 如果开启了vipChannel, 更新brokerAddr；`brokerAddr = MixAll.brokerVIPChannel(this.defaultMQProducer.isSendMessageWithVIPChannel(), brokerAddr);`
+
+2. 如果开启了vipChannel, 更新brokerAddr；
+
+```
+brokerAddr = MixAll.brokerVIPChannel(this.defaultMQProducer.isSendMessageWithVIPChannel(), brokerAddr);
+```
+
 3. 消息压缩及事务消息判断
-    ```
+
+```
 boolean msgBodyCompressed = false;
 if (this.tryToCompressMessage(msg)) {
     sysFlag |= MessageSysFlag.COMPRESSED_FLAG;
@@ -635,10 +645,15 @@ final String tranMsg = msg.getProperty(MessageConst.PROPERTY_TRANSACTION_PREPARE
 if (tranMsg != null && Boolean.parseBoolean(tranMsg)) {
     sysFlag |= MessageSysFlag.TRANSACTION_PREPARED_TYPE;
 }
-    ```
+```
+
 4. 执行两个钩子（CheckForbiddenHook、SendMessageHook）
 5. 构造发送消息请求头SendMessageRequestHeader对象
-6. 根据不同的消息发送模式，调用MQ客户端实例(MQClientStance)的消息发送方法`sendMessage(String addr, String brokerName, Message msg, SendMessageRequestHeader requestHeader, long timeoutMillis, CommunicationMode communicationMode, SendCallback sendCallback, TopicPublishInfo topicPublishInfo, MQClientInstance instance, int retryTimesWhenSendFailed, SendMessageContext context, DefaultMQProducerImpl producer)`
+6. 根据不同的消息发送模式，调用MQ客户端实例(MQClientStance)的消息发送方法
+
+```
+sendMessage(String addr, String brokerName, Message msg, SendMessageRequestHeader requestHeader, long timeoutMillis, CommunicationMode communicationMode, SendCallback sendCallback, TopicPublishInfo topicPublishInfo, MQClientInstance instance, int retryTimesWhenSendFailed, SendMessageContext context, DefaultMQProducerImpl producer)
+```
 
 #### MQClientStance的 `sendMessage(String addr, String brokerName, Message msg, SendMessageRequestHeader requestHeader, long timeoutMillis, CommunicationMode communicationMode, SendCallback sendCallback, TopicPublishInfo topicPublishInfo, MQClientInstance instance, int retryTimesWhenSendFailed, SendMessageContext context, DefaultMQProducerImpl producer)` 方法实现
 
