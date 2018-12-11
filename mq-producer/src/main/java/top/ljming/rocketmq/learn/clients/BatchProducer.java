@@ -20,11 +20,11 @@ public class BatchProducer {
         batchProducer.setNamesrvAddr("localhost:9876");
 
         batchProducer.start();
-        String topic = "BatchTest";
+        String topic = "simple_topic";
         List<Message> messageList = new ArrayList<>();
-        messageList.add(new Message(topic, "OrderID001", "hello world 0".getBytes()));
-        messageList.add(new Message(topic, "OrderID002", "hello world 1".getBytes()));
-        messageList.add(new Message(topic, "OrderID003", "hello world 2".getBytes()));
+        messageList.add(new Message(topic, "*", "hello world 0".getBytes()));
+        messageList.add(new Message(topic, "*", "hello world 1".getBytes()));
+        messageList.add(new Message(topic, "*", "hello world 2".getBytes()));
 
         batchProducer.send(messageList);
 

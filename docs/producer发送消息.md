@@ -615,7 +615,7 @@ private SendResult sendKernelImpl(final Message msg,
 
 1. 根据brokerName获取broker地址, 默认获取master // 消息的发送不可能往salve上发
 
-    ```
+```
 public String findBrokerAddressInPublish(final String brokerName) {
     HashMap<Long/* brokerId */, String/* address */> map = this.brokerAddrTable.get(brokerName);
     if (map != null && !map.isEmpty()) {
@@ -624,9 +624,9 @@ public String findBrokerAddressInPublish(final String brokerName) {
 
     return null;
 }
-    ```
+```
 
-2. 如果开启了vipChannel, 更新brokerAddr；
+2. 如果开启了vipChannel, 更新brokerAddr
 
 ```
 brokerAddr = MixAll.brokerVIPChannel(this.defaultMQProducer.isSendMessageWithVIPChannel(), brokerAddr);

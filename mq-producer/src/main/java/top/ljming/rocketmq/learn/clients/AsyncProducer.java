@@ -1,5 +1,6 @@
 package top.ljming.rocketmq.learn.clients;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -23,24 +24,25 @@ public class AsyncProducer {
         // 启动实例
         producer.start();
         producer.setRetryTimesWhenSendAsyncFailed(0);
-        for (int i = 0; i < 10; i++) {
-            final int index = 1;
-            // 创建message实例，并指定Topic，tag和 消息体
-            Message message = new Message("TopicTest", "TagA", "OrderID188",
-                    ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
 
-            // 调用send方法，将消息传送到一个消息服务器（broker）
-            producer.send(message, new SendCallback() {
-                public void onSuccess(SendResult sendResult) {
-                    System.out.printf("%-10d ok %s %n", index, sendResult.getMsgId());
-                }
+        JSONObject msgBody = new JSONObject();
+        msgBody.put("id", 7);
+        msgBody.put("name", "ljming");
+        msgBody.put("learning", "rocketmq");
 
-                public void onException(Throwable e) {
-                    System.out.printf("%-10d ok %s %n", index, e);
-                    e.printStackTrace();
-                }
-            });
-        }
+        // 创建message实例，并指定Topic，tag和 消息体
+        Message message = new Message("simple_topic", "*",
+                msgBody.toJSONString().getBytes(RemotingHelper.DEFAULT_CHARSET));
+        // 调用send方法，将消息传送到一个消息服务器（broker）
+        producer.send(message, new SendCallback() {
+            public void onSuccess(SendResult sendResult) {
+                System.out.printf("msgId={}", sendResult.getMsgId());
+            }
+
+            public void onException(Throwable e) {
+                System.out.printf("e={}", e);
+            }
+        });
         producer.shutdown();
     }
 }
