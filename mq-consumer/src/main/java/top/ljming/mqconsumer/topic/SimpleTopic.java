@@ -1,4 +1,4 @@
-package top.ljming.mqconsumer.Topic;
+package top.ljming.mqconsumer.topic;
 
 /**
  * 主题.

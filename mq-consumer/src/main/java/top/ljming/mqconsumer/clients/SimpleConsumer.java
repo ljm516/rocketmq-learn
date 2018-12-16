@@ -11,7 +11,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import top.ljming.mqconsumer.Topic.SimpleTopic;
+import top.ljming.mqconsumer.topic.SimpleTopic;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
