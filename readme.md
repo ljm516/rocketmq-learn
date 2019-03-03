@@ -507,3 +507,7 @@ name server 地址列表也可以通过在启动之前指定java选项 `rocketmq
 首先介绍的方法优先于后者:
 
 `Programmatic way > Java Options > Environment Variable > HTTP Endpoint`
+
+## 博客地址
+
+![RocketMQ学习系列](https://ljm516.github.io)

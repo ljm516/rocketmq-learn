@@ -6,7 +6,8 @@ package top.ljming.mqconsumer.topic;
  * @author ljming
  */
 public enum SimpleTopic {
-    SIMPLETOPIC("simple_topic", 4, 3000, 3);
+    SIMPLETOPIC("simple_topic", 4, 3000, 3),
+    SIMPLEPULLTOPIC("simple_pull_topic", 4, 3000, 3);
 
     private String name;
     private int queue;
